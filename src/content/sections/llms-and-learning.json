@@ -1,0 +1,9 @@
+{
+  "id": "llms-and-learning",
+  "title": "LLMs and Learning",
+  "blocks": [
+    {"type": "h2", "text": "LLMs and Learning"},
+    {"type": "p", "text": "[Placeholder] Content coming soon."},
+    {"type": "cta", "variant": "next", "text": "Next"}
+  ]
+}

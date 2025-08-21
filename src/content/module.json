@@ -1,0 +1,59 @@
+{
+  "sections": [
+    {
+      "id": "introduction",
+      "title": "Introduction",
+      "required": true
+    },
+    {
+      "id": "how-llms-work",
+      "title": "How LLMs Work",
+      "required": true
+    },
+    {
+      "id": "try-it-out",
+      "title": "Try It Out",
+      "required": false
+    },
+    {
+      "id": "weaknesses-and-caveats",
+      "title": "Weaknesses and Caveats",
+      "required": true
+    },
+    {
+      "id": "llms-and-learning",
+      "title": "LLMs and Learning",
+      "required": true
+    },
+    {
+      "id": "academic-case",
+      "title": "Academic Case",
+      "required": true
+    },
+    {
+      "id": "writing-process",
+      "title": "Writing Process",
+      "required": true
+    },
+    {
+      "id": "professional-case",
+      "title": "Professional Case",
+      "required": false
+    },
+    {
+      "id": "ai-student",
+      "title": "AI Student",
+      "required": true
+    },
+    {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "required": true
+    },
+    {
+      "id": "parting-message",
+      "title": "Parting Message",
+      "required": true
+    }
+  ]
+}

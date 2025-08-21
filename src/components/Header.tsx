@@ -41,8 +41,11 @@ const Header: React.FC = () => {
           <Link to="/" className="text-gray-700 dark:text-gray-200 hover:text-blue-800 dark:hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors">
             Home
           </Link>
-          <Link to="/course" className="text-gray-700 dark:text-gray-200 hover:text-blue-800 dark:hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors">
-            Course Module
+          <Link to="/course/introduction" className="text-gray-700 dark:text-gray-200 hover:text-blue-800 dark:hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors">
+            Course
+          </Link>
+          <Link to="/lab/tokenization" className="text-gray-700 dark:text-gray-200 hover:text-blue-800 dark:hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors">
+            Lab
           </Link>
           <Link to="/resources" className="text-gray-700 dark:text-gray-200 hover:text-blue-800 dark:hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors">
             Resources
@@ -89,11 +92,18 @@ const Header: React.FC = () => {
               Home
             </Link>
             <Link 
-              to="/course" 
+              to="/course/introduction" 
               className="text-gray-700 dark:text-gray-200 hover:text-blue-800 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 px-3 py-2 text-base font-medium rounded-md transition-colors" 
               onClick={toggleMobileMenu}
             >
-              Course Module
+              Course
+            </Link>
+            <Link 
+              to="/lab/tokenization" 
+              className="text-gray-700 dark:text-gray-200 hover:text-blue-800 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 px-3 py-2 text-base font-medium rounded-md transition-colors" 
+              onClick={toggleMobileMenu}
+            >
+              Lab
             </Link>
             <Link 
               to="/resources" 

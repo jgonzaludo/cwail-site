@@ -1,275 +1,221 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ChevronRight, CheckCircle, X, Download } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { CheckCircle } from 'lucide-react';
+import SectionNav from '../components/SectionNav';
+import ProgressBar from '../components/ProgressBar';
+import Accordion from '../components/Accordion';
+import Callout from '../components/Callout';
+import Toast from '../components/Toast';
+import { markCompleted, getProgressPercentage, nextSectionId } from '../lib/progress';
+
+interface Block {
+  type: 'h2' | 'p' | 'accordion' | 'callout' | 'cta';
+  text: string;
+  variant?: 'info' | 'warning' | 'example' | 'next';
+  items?: { title: string; content: string }[];
+  href?: string;
+}
+
+interface Section {
+  id: string;
+  title: string;
+  blocks: Block[];
+}
 
 const CoursePage: React.FC = () => {
-  const [currentSection, setCurrentSection] = useState('intro');
-  const [email, setEmail] = useState('');
-  const [startTime, setStartTime] = useState<Date | null>(null);
-  const [endTime, setEndTime] = useState<Date | null>(null);
+  const { sectionId } = useParams<{ sectionId: string }>();
+  const navigate = useNavigate();
+  const [section, setSection] = useState<Section | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [showToast, setShowToast] = useState(false);
 
-  const handleStartModule = () => {
-    if (email) {
-      setStartTime(new Date());
-      setCurrentSection('opening');
+  useEffect(() => {
+    const loadSection = async () => {
+      if (!sectionId) return;
+      
+      setLoading(true);
+      setError(null);
+      
+      try {
+        const response = await fetch(`/src/content/sections/${sectionId}.json`);
+        if (!response.ok) {
+          throw new Error(`Section not found: ${sectionId}`);
+        }
+        const sectionData = await response.json();
+        setSection(sectionData);
+      } catch (err) {
+        console.error('Failed to load section:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load section');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadSection();
+  }, [sectionId]);
+
+  const handleMarkComplete = () => {
+    if (sectionId) {
+      markCompleted(sectionId);
+      setShowToast(true);
     }
   };
 
-  const handleCompleteModule = () => {
-    setEndTime(new Date());
-    setCurrentSection('celebration');
+  const handleNext = () => {
+    if (sectionId) {
+      const next = nextSectionId(sectionId);
+      if (next) {
+        navigate(`/course/${next}`);
+      }
+    }
   };
 
-  const renderIntroSection = () => (
-    <div className="max-w-2xl mx-auto">
-      <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">Course Module</h1>
-      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
-        <p className="text-gray-600 dark:text-gray-400 mb-6">
-          We only use your email to deliver your certificate. It will not be stored or shared.
-        </p>
-        <div className="space-y-4">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email address"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+  const renderBlock = (block: Block, index: number) => {
+    switch (block.type) {
+      case 'h2':
+        return (
+          <h2 key={index} className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            {block.text}
+          </h2>
+        );
+      
+      case 'p':
+        return (
+          <p key={index} className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            {block.text}
+          </p>
+        );
+      
+      case 'accordion':
+        return (
+          <Accordion 
+            key={index} 
+            items={block.items || []} 
+            className="mb-6"
           />
+        );
+      
+      case 'callout':
+        return (
+          <Callout 
+            key={index}
+            variant={(block.variant as 'info' | 'warning' | 'example') || 'info'}
+            text={block.text}
+            className="mb-6"
+          />
+        );
+      
+      case 'cta':
+        if (block.variant === 'next') {
+          return (
+            <button
+              key={index}
+              onClick={handleNext}
+              className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+              {block.text}
+            </button>
+          );
+        }
+        return (
           <button
-            onClick={handleStartModule}
-            disabled={!email}
-            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+            key={index}
+            className="inline-flex items-center px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
           >
-            Start Module
+            {block.text}
           </button>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderOpeningActivity = () => (
-    <div className="max-w-4xl mx-auto">
-      <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">Opening Activity</h2>
-      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
-        <p className="text-gray-600 dark:text-gray-400 mb-6">[TK] Opening Activity Content</p>
-        <button
-          onClick={() => setCurrentSection('evidence')}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-        >
-          Continue
-        </button>
-      </div>
-    </div>
-  );
-
-  const renderEvidenceSection = () => (
-    <div className="max-w-4xl mx-auto">
-      <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">Review of the Evidence</h2>
-      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 space-y-6">
-        <div className="space-y-4">
-          <p className="text-gray-700 dark:text-gray-300">Students already use LLMs frequently (Ganjavi et al. 2024)</p>
-          <p className="text-gray-700 dark:text-gray-300">Uncritical genAI use harms learning (Bastani et al. 2024)</p>
-          <p className="text-gray-700 dark:text-gray-300">
-            <a href="#" className="text-blue-600 hover:text-blue-700 underline">
-              MIT study links LLM use to cognitive decline
-            </a> (Time article)
-          </p>
-          <p className="text-gray-700 dark:text-gray-300">Students worry about overreliance (Cummings et al. 2024)</p>
-        </div>
-        
-        <div className="border-t pt-6">
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Anecdotal Examples</h3>
-          <p className="text-gray-600 dark:text-gray-400 mb-4">[TK] Anecdotal examples section</p>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">
-            <a href="#" className="text-blue-600 hover:text-blue-700 underline">
-              NY Mag article link placeholder
-            </a>
-          </p>
-        </div>
-        
-        <button
-          onClick={() => setCurrentSection('writing')}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-        >
-          Continue
-        </button>
-      </div>
-    </div>
-  );
-
-  const renderWritingSection = () => (
-    <div className="max-w-4xl mx-auto">
-      <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">Why Write Today?</h2>
-      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 space-y-6">
-        <div className="space-y-4">
-          <p className="text-gray-700 dark:text-gray-300">
-            [TK] Text explaining writing process: invention/prewriting/drafting/revision/editing/publishing
-          </p>
-          <p className="text-gray-700 dark:text-gray-300">
-            [TK] Visual metaphor (gym/pushups analogy)
-          </p>
-          <p className="text-gray-700 dark:text-gray-300">
-            [TK] Calculator analogy
-          </p>
-        </div>
-        
-        <button
-          onClick={() => setCurrentSection('ai-usage')}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-        >
-          Continue
-        </button>
-      </div>
-    </div>
-  );
-
-  const renderAIUsageSection = () => (
-    <div className="max-w-4xl mx-auto">
-      <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">Using AI in Writing</h2>
-      <div className="space-y-6">
-        <div className="bg-green-50 border border-green-200 rounded-xl p-6">
-          <h3 className="text-xl font-semibold text-green-800 mb-4 flex items-center">
-            <CheckCircle className="h-6 w-6 mr-2" />
-            Good Uses
-          </h3>
-          <ul className="space-y-2 text-green-700 dark:text-gray-300">
-            <li>• Brainstorming</li>
-            <li>• Sources</li>
-            <li>• Reverse-outlines</li>
-            <li>• Peer review</li>
-            <li>• Grammar/spellcheck</li>
-          </ul>
-        </div>
-
-        <div className="bg-red-50 border border-red-200 rounded-xl p-6">
-          <h3 className="text-xl font-semibold text-red-800 mb-4 flex items-center">
-            <X className="h-6 w-6 mr-2" />
-            Bad Uses
-          </h3>
-          <ul className="space-y-2 text-red-700 dark:text-gray-300">
-            <li>• Drafting full papers</li>
-            <li>• Fake sources</li>
-            <li>• Masking plagiarism</li>
-          </ul>
-        </div>
-
-        <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
-          <h3 className="text-xl font-semibold text-yellow-800 mb-4">⚠️ Depends</h3>
-          <ul className="space-y-2 text-yellow-700 dark:text-gray-300">
-            <li>• Form letters</li>
-            <li>• Meeting notes</li>
-            <li>• Debugging summaries</li>
-          </ul>
-        </div>
-
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 text-center">
-          <p className="text-xl font-semibold text-blue-800 dark:text-gray-100">
-            You must still think like a writer.
-          </p>
-        </div>
-
-        <button
-          onClick={() => setCurrentSection('professional')}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-        >
-          Continue
-        </button>
-      </div>
-    </div>
-  );
-
-  const renderProfessionalSection = () => (
-    <div className="max-w-4xl mx-auto">
-      <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">Professional Case for Writing</h2>
-      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
-        <p className="text-gray-700 dark:text-gray-300 mb-6">
-          [TK] Strong writing as top industry skill
-        </p>
-        <button
-          onClick={() => setCurrentSection('quiz')}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-        >
-          Continue to Quiz
-        </button>
-      </div>
-    </div>
-  );
-
-  const renderQuizSection = () => (
-    <div className="max-w-4xl mx-auto">
-      <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">Final Quiz</h2>
-      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
-        <p className="text-gray-600 dark:text-gray-400 mb-6">[TK] Container for 3–5 questions</p>
-        <button
-          onClick={handleCompleteModule}
-          className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-        >
-          Complete Module
-        </button>
-      </div>
-    </div>
-  );
-
-  const renderCelebrationSection = () => (
-    <div className="max-w-2xl mx-auto text-center">
-      <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-8">Congratulations!</h2>
-      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
-        <p className="text-gray-600 dark:text-gray-400 mb-6">[TK] Celebration content</p>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors flex items-center mx-auto">
-          <Download className="h-5 w-5 mr-2" />
-          Download Certificate
-        </button>
-        <div className="mt-6 text-sm text-gray-500 dark:text-gray-400">
-          <p>Certificate includes:</p>
-          <p>Email: {email}</p>
-          <p>Start: {startTime?.toLocaleString()}</p>
-          <p>End: {endTime?.toLocaleString()}</p>
-          <p>[TK] CWAIL logo, summary text</p>
-        </div>
-        <div className="mt-8">
-          <button
-            onClick={() => setCurrentSection('survey')}
-            className="text-blue-600 hover:text-blue-700 underline"
-          >
-            Continue to Survey
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderSurveySection = () => (
-    <div className="max-w-2xl mx-auto">
-      <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">Survey</h2>
-      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
-        <p className="text-gray-600 dark:text-gray-400">[TK] Survey Section</p>
-      </div>
-    </div>
-  );
-
-  const sections = {
-    intro: renderIntroSection,
-    opening: renderOpeningActivity,
-    evidence: renderEvidenceSection,
-    writing: renderWritingSection,
-    'ai-usage': renderAIUsageSection,
-    professional: renderProfessionalSection,
-    quiz: renderQuizSection,
-    celebration: renderCelebrationSection,
-    survey: renderSurveySection
+        );
+      
+      default:
+        return null;
+    }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <SectionNav />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex items-center justify-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <SectionNav />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+            <p className="text-red-800 dark:text-red-200">{error}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!section) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <SectionNav />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+            <p className="text-yellow-800 dark:text-yellow-200">Section not found.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <nav className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-300 mb-8">
-          <Link to="/" className="hover:text-blue-600 dark:hover:text-orange-400 transition-colors">Home</Link>
-          <ChevronRight className="h-4 w-4" />
-          <span className="text-gray-900 dark:text-gray-100 font-medium">Course Module</span>
-        </nav>
-
-        {sections[currentSection as keyof typeof sections]()}
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <SectionNav />
+      
+      {/* Progress Bar */}
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm text-gray-600 dark:text-gray-400">
+              Course Progress
+            </span>
+            <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
+              {getProgressPercentage()}%
+            </span>
+          </div>
+          <ProgressBar percentage={getProgressPercentage()} />
+        </div>
       </div>
+
+      {/* Content */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+          {section.blocks.map((block, index) => renderBlock(block, index))}
+          
+          {/* Temporary Mark Complete Button */}
+          <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+            <button
+              onClick={handleMarkComplete}
+              className="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+            >
+              <CheckCircle className="h-5 w-5 mr-2" />
+              Mark Complete
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Toast Notification */}
+      {showToast && (
+        <Toast
+          message="Marked complete (temporary)."
+          type="success"
+          onClose={() => setShowToast(false)}
+        />
+      )}
     </div>
   );
 };

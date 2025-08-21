@@ -1,0 +1,9 @@
+{
+  "id": "professional-case",
+  "title": "Professional Case",
+  "blocks": [
+    {"type": "h2", "text": "Professional Case"},
+    {"type": "p", "text": "[Placeholder] Content coming soon."},
+    {"type": "cta", "variant": "next", "text": "Next"}
+  ]
+}

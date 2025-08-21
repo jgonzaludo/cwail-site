@@ -1,0 +1,9 @@
+{
+  "id": "writing-process",
+  "title": "Writing Process",
+  "blocks": [
+    {"type": "h2", "text": "Writing Process"},
+    {"type": "p", "text": "[Placeholder] Content coming soon."},
+    {"type": "cta", "variant": "next", "text": "Next"}
+  ]
+}

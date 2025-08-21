@@ -1,0 +1,9 @@
+{
+  "id": "ai-student",
+  "title": "AI Student",
+  "blocks": [
+    {"type": "h2", "text": "AI Student"},
+    {"type": "p", "text": "[Placeholder] Content coming soon."},
+    {"type": "cta", "variant": "next", "text": "Next"}
+  ]
+}

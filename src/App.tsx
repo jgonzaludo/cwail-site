@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import CoursePage from './pages/CoursePage';
+import LabTokenization from './pages/LabTokenization';
+import CelebrationPage from './pages/CelebrationPage';
 import ResourcesPage from './pages/ResourcesPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
@@ -16,7 +18,9 @@ function App() {
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/course" element={<CoursePage />} />
+            <Route path="/course/:sectionId" element={<CoursePage />} />
+            <Route path="/lab/tokenization" element={<LabTokenization />} />
+            <Route path="/celebration" element={<CelebrationPage />} />
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />

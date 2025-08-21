@@ -1,0 +1,9 @@
+{
+  "id": "introduction",
+  "title": "Introduction",
+  "blocks": [
+    {"type": "h2", "text": "Introduction"},
+    {"type": "p", "text": "[Placeholder] Content coming soon."},
+    {"type": "cta", "variant": "next", "text": "Next"}
+  ]
+}

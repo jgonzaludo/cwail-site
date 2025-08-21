@@ -1,0 +1,9 @@
+{
+  "id": "try-it-out",
+  "title": "Try It Out",
+  "blocks": [
+    {"type": "h2", "text": "Try It Out"},
+    {"type": "p", "text": "[Placeholder] Content coming soon."},
+    {"type": "cta", "variant": "next", "text": "Next"}
+  ]
+}

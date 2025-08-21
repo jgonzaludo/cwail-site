@@ -1,0 +1,9 @@
+{
+  "id": "weaknesses-and-caveats",
+  "title": "Weaknesses and Caveats",
+  "blocks": [
+    {"type": "h2", "text": "Weaknesses and Caveats"},
+    {"type": "p", "text": "[Placeholder] Content coming soon."},
+    {"type": "cta", "variant": "next", "text": "Next"}
+  ]
+}

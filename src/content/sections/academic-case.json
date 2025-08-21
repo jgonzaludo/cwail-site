@@ -1,0 +1,9 @@
+{
+  "id": "academic-case",
+  "title": "Academic Case",
+  "blocks": [
+    {"type": "h2", "text": "Academic Case"},
+    {"type": "p", "text": "[Placeholder] Content coming soon."},
+    {"type": "cta", "variant": "next", "text": "Next"}
+  ]
+}

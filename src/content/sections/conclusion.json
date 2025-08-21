@@ -1,0 +1,9 @@
+{
+  "id": "conclusion",
+  "title": "Conclusion",
+  "blocks": [
+    {"type": "h2", "text": "Conclusion"},
+    {"type": "p", "text": "[Placeholder] Content coming soon."},
+    {"type": "cta", "variant": "next", "text": "Next"}
+  ]
+}

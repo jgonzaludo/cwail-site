@@ -1,0 +1,9 @@
+{
+  "id": "how-llms-work",
+  "title": "How LLMs Work",
+  "blocks": [
+    {"type": "h2", "text": "How LLMs Work"},
+    {"type": "p", "text": "[Placeholder] Content coming soon."},
+    {"type": "cta", "variant": "next", "text": "Next"}
+  ]
+}

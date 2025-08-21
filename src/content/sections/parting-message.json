@@ -1,0 +1,9 @@
+{
+  "id": "parting-message",
+  "title": "Parting Message",
+  "blocks": [
+    {"type": "h2", "text": "Parting Message"},
+    {"type": "p", "text": "[Placeholder] Content coming soon."},
+    {"type": "cta", "variant": "next", "text": "Next"}
+  ]
+}

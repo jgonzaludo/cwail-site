@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
             </h1>
             <div className="space-y-4">
               <Link 
-                to="/course" 
+                to="/course/introduction" 
                 className="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl mr-4 dark:bg-blue-500 dark:hover:bg-blue-600"
               >
                 Begin the 15‑Minute Module
@@ -37,7 +37,7 @@ const HomePage: React.FC = () => {
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Link to="/course" className="group">
+            <Link to="/course/introduction" className="group">
               <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 h-full border border-gray-100 dark:border-gray-800 hover:border-blue-200 dark:hover:border-orange-200 transform hover:-translate-y-1">
                 <div className="flex items-center justify-center w-12 h-12 bg-blue-100 dark:bg-orange-900 rounded-lg mb-6 group-hover:bg-blue-200 dark:group-hover:bg-orange-800 transition-colors">
                   <BookOpen className="h-6 w-6 text-blue-600 dark:text-orange-400" />
