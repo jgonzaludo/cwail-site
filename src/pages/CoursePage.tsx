@@ -6,7 +6,7 @@ import ProgressBar from '../components/ProgressBar';
 import Accordion from '../components/Accordion';
 import Callout from '../components/Callout';
 import Toast from '../components/Toast';
-import { markCompleted, getProgressPercentage, nextSectionId } from '../lib/progress';
+import { setCompleted, isCompleted, getProgressPercentage, nextSectionId, canAccessConclusion, canAccessPartingMessage } from '../lib/progress';
 
 interface Block {
   type: 'h2' | 'p' | 'accordion' | 'callout' | 'cta';
@@ -29,6 +29,8 @@ const CoursePage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     const loadSection = async () => {
@@ -44,6 +46,7 @@ const CoursePage: React.FC = () => {
         }
         const sectionData = await response.json();
         setSection(sectionData);
+        setIsChecked(isCompleted(sectionId));
       } catch (err) {
         console.error('Failed to load section:', err);
         setError(err instanceof Error ? err.message : 'Failed to load section');
@@ -55,9 +58,11 @@ const CoursePage: React.FC = () => {
     loadSection();
   }, [sectionId]);
 
-  const handleMarkComplete = () => {
+  const handleCheckboxChange = (checked: boolean) => {
     if (sectionId) {
-      markCompleted(sectionId);
+      setIsChecked(checked);
+      setCompleted(sectionId, checked);
+      setToastMessage(checked ? 'Marked complete' : 'Marked incomplete');
       setShowToast(true);
     }
   };
@@ -171,6 +176,37 @@ const CoursePage: React.FC = () => {
     );
   }
 
+  // Check gating for conclusion and parting-message
+  if (sectionId === 'conclusion' && !canAccessConclusion()) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <SectionNav />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+            <p className="text-red-800 dark:text-red-200">
+              Finish all required sections to access this page.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (sectionId === 'parting-message' && !canAccessPartingMessage()) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <SectionNav />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+            <p className="text-red-800 dark:text-red-200">
+              Finish all required sections to access this page.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <SectionNav />
@@ -195,15 +231,19 @@ const CoursePage: React.FC = () => {
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
           {section.blocks.map((block, index) => renderBlock(block, index))}
           
-          {/* Temporary Mark Complete Button */}
+          {/* Completion Checkbox */}
           <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <button
-              onClick={handleMarkComplete}
-              className="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-            >
-              <CheckCircle className="h-5 w-5 mr-2" />
-              Mark Complete
-            </button>
+            <label className="flex items-center space-x-3 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={(e) => handleCheckboxChange(e.target.checked)}
+                className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded transition-colors"
+              />
+              <span className="text-gray-700 dark:text-gray-300 font-medium">
+                Mark this section as complete
+              </span>
+            </label>
           </div>
         </div>
       </div>
@@ -211,7 +251,7 @@ const CoursePage: React.FC = () => {
       {/* Toast Notification */}
       {showToast && (
         <Toast
-          message="Marked complete (temporary)."
+          message={toastMessage}
           type="success"
           onClose={() => setShowToast(false)}
         />

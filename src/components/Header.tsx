@@ -33,7 +33,7 @@ const Header: React.FC = () => {
         <div className="flex items-center">
           <Link to="/" className="flex items-center space-x-2 text-blue-800 hover:text-blue-900 dark:text-blue-400 transition-colors">
             <BookOpen className="h-8 w-8" />
-            <span className="text-xl font-bold">[TK] Logo</span>
+            <span className="text-xl font-bold">CWAIL</span>
           </Link>
         </div>
         {/* Nav */}

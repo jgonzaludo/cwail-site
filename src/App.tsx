@@ -6,9 +6,11 @@ import HomePage from './pages/HomePage';
 import CoursePage from './pages/CoursePage';
 import LabTokenization from './pages/LabTokenization';
 import CelebrationPage from './pages/CelebrationPage';
+import QuizPage from './pages/QuizPage';
 import ResourcesPage from './pages/ResourcesPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import { RequireAllRequired, RequireQuizUnlocked, getRedirectPath } from './lib/guards';
 
 function App() {
   return (
@@ -21,6 +23,14 @@ function App() {
             <Route path="/course/:sectionId" element={<CoursePage />} />
             <Route path="/lab/tokenization" element={<LabTokenization />} />
             <Route path="/celebration" element={<CelebrationPage />} />
+            <Route 
+              path="/quiz" 
+              element={
+                <RequireQuizUnlocked redirectTo="/course/parting-message">
+                  <QuizPage />
+                </RequireQuizUnlocked>
+              } 
+            />
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />

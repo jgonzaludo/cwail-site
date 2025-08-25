@@ -1,4 +1,4 @@
-import { encode } from 'gpt-tokenizer';
+import { encoding_for_model } from '@dqbd/tiktoken';
 
 export interface TokenOffset {
   start: number;
@@ -11,31 +11,45 @@ export interface TokenizationResult {
   offsets: TokenOffset[];
 }
 
+export type EncodingName = 'gpt2' | 'cl100k_base';
+
+// Map encoding names to model names
+const encodingMap: Record<EncodingName, string> = {
+  'gpt2': 'gpt2',
+  'cl100k_base': 'gpt-4'
+};
+
 export async function tokenize(
   text: string, 
-  encoding: 'gpt2' | 'cl100k_base'
+  encoding: EncodingName
 ): Promise<TokenizationResult> {
   try {
-    const ids = encode(text, encoding);
+    const modelName = encodingMap[encoding];
+    const enc = encoding_for_model(modelName as any);
     
-    // For now, we'll create simple character-based offsets
-    // In a real implementation, you'd want to map tokens back to character positions
-    const offsets: TokenOffset[] = [];
+    const ids = enc.encode(text);
+    const tokens: TokenOffset[] = [];
+    
+    // For now, create approximate character-based offsets
+    // This is a simplified approach - in a full implementation you'd want
+    // byte-level offsets for accurate highlighting
     let currentPos = 0;
-    
-    // This is a simplified approach - in practice you'd need the actual tokenizer
-    // to provide byte-level offsets for accurate highlighting
     for (let i = 0; i < ids.length; i++) {
-      const tokenLength = Math.min(4, text.length - currentPos); // Approximate
-      offsets.push({
+      const tokenBytes = enc.decode(new Uint32Array([ids[i]]));
+      const token = new TextDecoder().decode(tokenBytes);
+      const tokenLength = token.length;
+      
+      tokens.push({
         start: currentPos,
         end: currentPos + tokenLength,
-        slice: text.slice(currentPos, currentPos + tokenLength)
+        slice: token
       });
+      
       currentPos += tokenLength;
     }
     
-    return { ids, offsets };
+    enc.free();
+    return { ids: Array.from(ids), offsets: tokens };
   } catch (error) {
     console.error('Tokenization failed:', error);
     return { ids: [], offsets: [] };

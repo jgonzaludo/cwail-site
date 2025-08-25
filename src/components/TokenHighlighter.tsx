@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface Token {
-  id: number;
+  id?: number;
   start: number;
   end: number;
   slice: string;
@@ -37,10 +37,10 @@ const TokenHighlighter: React.FC<TokenHighlighterProps> = ({ text, tokens, class
         <span
           key={`token-${index}`}
           className="bg-yellow-200 dark:bg-yellow-800 px-1 rounded cursor-help focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
-          title={`Token ID: ${token.id}`}
+          title={`Token ID: ${token.id || 'unknown'}`}
           tabIndex={0}
           role="button"
-          aria-label={`Token ${token.id}: ${token.slice}`}
+          aria-label={`Token ${token.id || 'unknown'}: ${token.slice}`}
         >
           {token.slice}
         </span>

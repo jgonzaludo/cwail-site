@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { tokenize, type TokenizationResult } from '../lib/tokenizers';
+import { tokenize, type TokenizationResult, type EncodingName } from '../lib/tokenizers';
 import TokenHighlighter from '../components/TokenHighlighter';
 
 const LabTokenization: React.FC = () => {
   const [text, setText] = useState('');
-  const [encoding, setEncoding] = useState<'gpt2' | 'cl100k_base'>('gpt2');
+  const [encoding, setEncoding] = useState<EncodingName>('gpt2');
   const [result, setResult] = useState<TokenizationResult>({ ids: [], offsets: [] });
   const [loading, setLoading] = useState(false);
 
@@ -198,7 +198,7 @@ function debounce<T extends (...args: any[]) => any>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout;
+  let timeout: ReturnType<typeof setTimeout>;
   return (...args: Parameters<T>) => {
     clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), wait);
