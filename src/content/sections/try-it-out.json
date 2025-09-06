@@ -1,9 +1,22 @@
 {
   "id": "try-it-out",
-  "title": "Try It Out",
+  "title": "Try it Out",
   "blocks": [
-    {"type": "h2", "text": "Try It Out"},
-    {"type": "p", "text": "[Placeholder] Content coming soon."},
-    {"type": "cta", "variant": "next", "text": "Next"}
+    { "type": "h2", "text": "Try it Out" },
+    {
+      "type": "p",
+      "text": "The tool below illustrates how an LLM might tokenize a string of text."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "text": "[Token Workshop Interactive Element here]"
+    },
+    {
+      "type": "cta",
+      "variant": "lab",
+      "href": "/lab/tokenization",
+      "text": "Open the Tokenization Lab"
+    }
   ]
 }

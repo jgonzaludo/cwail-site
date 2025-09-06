@@ -2,8 +2,59 @@
   "id": "introduction",
   "title": "Introduction",
   "blocks": [
-    {"type": "h2", "text": "Introduction"},
-    {"type": "p", "text": "[Placeholder] Content coming soon."},
-    {"type": "cta", "variant": "next", "text": "Next"}
+    { "type": "h2", "text": "Introduction" },
+    {
+      "type": "p",
+      "text": "Imagine that you have recently graduated from university and are searching for career opportunities in the tech industry. You encounter the following posting:"
+    },
+    {
+      "type": "p",
+      "text": "ABC Industries is seeking highly motivated applicants for an internship at our state-of-the-art facility in Capital City. In your new role, you will assist senior developers in our Product Development division as they create novel, industry-leading product experiences for our global customer base."
+    },
+    {
+      "type": "p",
+      "text": "Applicants with relevant education or experience in the fields of semiconductor manufacturing, computer technology, telecommunications, user experience (UX), and artificial intelligence are strongly encouraged to apply. If selected for this role, applicants can expect to receive a competitive stipend and to receive priority for entry-level hiring opportunities at ABC Industries at the conclusion of their internship."
+    },
+    {
+      "type": "p",
+      "text": "In addition to submitting their resume and cover letter to our online application portal, applicants should submit a short response to the following prompt to aid us in our decision:"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "text": "Prompt: Should societies race to adopt new technologies as quickly as possible, or should they integrate new technologies more cautiously? If you think rapid adaptation is best, how do you suggest societies maximize the speed of progress? If you think cautiousness is best, what rules or restrictions would you suggest societies abide by? (responses should be 100 words minimum, 250 words maximum)."
+    },
+    {
+      "type": "p",
+      "text": "You're interested in this internship, but it's not the only position you plan to apply for. In fact, your field is competitive, and you anticipate that your application to this internship may be just the first step in a lengthy job search. Moreover, you're discouraged by the request for a written response on top of more typical application materials, and you're not 100% sure what role your response will play in your application."
+    },
+    {
+      "type": "p",
+      "text": "You upload your resume and stare at the input box for the requested response. You see two options before you:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "You can either answer it yourself, or",
+        "You can generate a response with AI."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Before proceeding, submit a response to the prompt below. You can either write it yourself or use an AI tool to help. We won't be able to tell."
+    },
+    {
+      "type": "shortResponseBox",
+      "label": "Your response"
+    },
+    {
+      "type": "p",
+      "text": "We'll return to this scenario momentarily."
+    },
+    {
+      "type": "cta",
+      "variant": "next",
+      "text": "Next section"
+    }
   ]
 }

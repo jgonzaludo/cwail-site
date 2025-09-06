@@ -1,9 +1,52 @@
 {
   "id": "how-llms-work",
-  "title": "How LLMs Work",
+  "title": "How do LLMs work?",
   "blocks": [
-    {"type": "h2", "text": "How LLMs Work"},
-    {"type": "p", "text": "[Placeholder] Content coming soon."},
-    {"type": "cta", "variant": "next", "text": "Next"}
+    { "type": "h2", "text": "How do LLMs work?" },
+    {
+      "type": "p",
+      "text": "After many years of travel and adventure, Jack and Jill lived happily ever ______."
+    },
+    {
+      "type": "p",
+      "text": "What word makes the most sense in the blank above?"
+    },
+    {
+      "type": "p",
+      "text": "If you understand why the answer is \"after,\" you are already part of the way to understanding how many of the most popular AI tools work."
+    },
+    {
+      "type": "p",
+      "text": "Large Language Models (LLMs) imitate the form and structure of human writing via a process that is a little like educated guessing. By performing statistical calculations on enormous bodies of evidence, LLMs can determine which combinations of words are most likely to appear together with startling accuracy. Though the computing processes that occur \"behind the scenes\" are highly complex, the fundamentals of this process are simple."
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "title": "Training",
+          "content": "LLMs are trained on enormous datasets made up of text from books, websites, articles, and other written sources. During training, the model learns to identify patterns in how language is used—for example, understanding grammar, common phrases, factual knowledge, and even nuances in tone or style. Essentially, it develops a statistical sense of which words tend to appear together and in what order."
+        },
+        {
+          "title": "Transformer architecture",
+          "content": "The core technology behind LLMs is called the Transformer architecture. This structure is specifically designed to handle sequences of data—in this case, words or word fragments—and it allows the model to process all parts of a sentence simultaneously rather than one word at a time. A key feature of transformers is the self-attention mechanism, which lets the model weigh the importance of each word relative to every other word in a sentence. This makes it particularly good at understanding context and relationships between words, even across long sentences or paragraphs."
+        },
+        {
+          "title": "Tokenization",
+          "content": "Before any text can be processed, it must be broken down into smaller pieces called tokens. Tokens might be whole words or just parts of words, depending on their frequency and structure. For example, a word like \"running\" might be split into two separate tokens: \"runn\" and \"ing.\" Each of these tokens is converted into a vector—a numerical representation that the model can manipulate. This tokenization process is essential because it allows the model to work with a fixed vocabulary and handle rare or unfamiliar words more flexibly. As the model trains, it learns how words relate to one another based on context. For instance, it picks up that the word \"bank\" can mean very different things depending on whether it appears near words like \"river\" or \"money.\" By seeing countless examples, the model develops a robust internal representation of meaning and context, allowing it to disambiguate words and phrases based on the surrounding text."
+        },
+        {
+          "title": "Fine-tuning",
+          "content": "After initial training, LLMs can be fine-tuned for specific tasks or domains, such as medical questions, legal documents, or computer programming. To make the model more aligned with human values and expectations, techniques like Reinforcement Learning from Human Feedback (RLHF) are used. This involves humans rating model responses, which helps guide the model to generate answers that are more helpful, accurate, and appropriate."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Using this basic process, LLMs can quickly produce written output that is often almost indistinguishable from human writing. For instance: the text in each of the expandable elements above was produced by an LLM after we asked it to explain how LLMs work (though, for what it's worth, we also performed some light editing)."
+    },
+    {
+      "type": "p",
+      "text": "Could you tell? Don't worry: this is the only time we'll pull this sort of switcheroo during this module."
+    }
   ]
 }
