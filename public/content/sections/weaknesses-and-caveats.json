@@ -1,0 +1,47 @@
+{
+  "id": "weaknesses-and-caveats",
+  "title": "Weaknesses and Caveats",
+  "blocks": [
+    { "type": "h2", "text": "Weaknesses and Caveats" },
+    {
+      "type": "p",
+      "text": "Despite how impressive LLMs have become, it's important to understand that they are not perfect tools,"
+    },
+    { "type": "h3", "text": "LLMs don't understand anything." },
+    {
+      "type": "p",
+      "text": "Though LLMs can produce accurate, human-like written output, they are very unlike humans insofar as their ability to \"write\" authoritatively about a given topic does not imply a rich understanding of that topic."
+    },
+    {
+      "type": "p",
+      "text": "Remember that LLMs interpret words and other tokens as vectors—numerical values—rather than as symbolic expressions of real things or ideas (as a human would). Thus, a given sentence produced by an LLM is essentially its best guess as to which combination of vectors will be most satisfying to the user when presented together. Often, this guess will be accurate. However, it will not (and, indeed, cannot) be a reflection of true understanding or intelligence."
+    },
+    { "type": "h3", "text": "LLMs can make mistakes." },
+    {
+      "type": "p",
+      "text": "Because LLMs lack the power of true comprehension, they can make mistakes that a knowledgeable human would typically be able to avoid."
+    },
+    {
+      "type": "p",
+      "text": "Some mistakes may be subtle, low-stakes errors, but others may be more serious. Notably, LLMs charged with performing research tasks (like compiling a literature review, for instance) have been known to generate incorrect factual claims and cite sources that do not exist. This, of course, can have serious repercussions in high-stakes contexts (as, e.g., fabricating sources is typically regarded as plagiarism)."
+    },
+    { "type": "h3", "text": "LLMs struggle with certain kinds of tasks." },
+    {
+      "type": "p",
+      "text": "LLMs produce output by estimating the relationships between tokens, and they have no ability to analyze the veracity of their own output as they produce it. These qualities mean that LLMs can struggle with certain deceptively simple tasks, and that LLMs cannot \"catch themselves\" (i.e., recognize their own mistake), even in cases when a human would easily be able to see the error and correct it."
+    },
+    {
+      "type": "p",
+      "text": "For example, early models of ChatGPT spurred much amusement when tech commentators discovered their occasional tendency to count the number of \"Rs\" in the word \"strawberry\" as 2, rather than 3. Though LLMs have improved since the infamous \"strawberry\" issues, multi-step mathematical or logical arguments (e.g., proofs) can still present them with challenges."
+    },
+    { "type": "h3", "text": "LLM content is inherently derivative." },
+    {
+      "type": "p",
+      "text": "LLMs \"learn\" by ingesting huge troves of practice data (often, but not always, pulled from the internet). Though these data are usually extensive enough to produce writing that is smooth, fluent, and pleasing to a variety of audiences, the output of the LLM is ultimately constrained by the boundaries of the data. They lack the ability to learn, grow, or forge connections beyond these boundaries in the way that a human would."
+    },
+    {
+      "type": "p",
+      "text": "For instance, an LLM may not be able to respond to questions about events that have occurred after its training data were produced, and it may struggle to formulate accurate responses when working in niche areas of knowledge for which it lacks training data."
+    }
+  ]
+}

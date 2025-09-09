@@ -1,0 +1,30 @@
+{
+  "id": "llms-and-learning",
+  "title": "What do we know about LLMs and learning?",
+  "blocks": [
+    { "type": "h2", "text": "What do we know about LLMs and learning?" },
+    { "type": "h3", "text": "Research" },
+    {
+      "type": "p",
+      "text": "Because LLMs are relatively new (ChatGPT, for example, released to the public in November 2022), scholarly understandings of this technology are still incomplete. This is especially true when it comes to the complex matter of how LLM usage impacts educational experiences. There are also, of course, uncertainties related to individual subjectivity: not everyone learns in the same way, and not everyone uses (or responds to) LLMs in the same way."
+    },
+    {
+      "type": "p",
+      "text": "That said, what evidence we currently have suggests that, in general, when students rely on LLMs to do lots of their academic work, those students don't learn very well."
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Frequent, unmoderated use of LLMs can significantly diminish student learning. When students use an unrestricted LLM for assistance during practice sessions, they perform worse on tests (for which LLMs are forbidden) than students who did not use an LLM during the practice sessions. However, modifying the practice session LLM with certain \"safeguards\" (e.g., so that it can provide hints to users, but not directly answer questions for them) mitigates almost all of the harm (Bastani et al., 2024).",
+        "Using an LLM to write academic texts may engage the brain less than writing without one. (Kosmyna et al., 2025). Brain activity of participants who used LLMs to assist with responses to SAT essay prompts suggested weaker neural connectivity during the writing process compared to participants who wrote essays unassisted.",
+        "However, the nature of the usage mattered a great deal. Those who \"strategically used LLMs as a tool for active learning,\" including, e.g., using them \"to revisit and synthesize information,\" were more cognitively engaged than those who used them for speed and convenience (e.g., by copy/pasting their output).",
+        "Some differences in the participants' written responses could also be observed: LLM-using participants wrote on a narrower range of ideas, for instance (note, however, that the researchers behind this study regard this latter observation as an unconfirmed \"preliminary\" finding due to their small sample size).",
+        "Students report some misgivings about using LLMs for writing. These include fears of becoming dependent on AI tools, skepticism about the helpfulness of AI writing feedback, and dissatisfaction with a perceived \"generic\" quality to AI-generated writing (Cummings et al., 2024)."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "In sum: there is now some research evidence for a set of conclusions that are quite intuitive. When people let AI do all of their work for them, their own abilities can wither, and their dependence on AI can grow. As a consequence, both the person and the quality of the work can suffer. AI, in other words, can become an intellectual crutch—if used unwisely."
+    }
+  ]
+}

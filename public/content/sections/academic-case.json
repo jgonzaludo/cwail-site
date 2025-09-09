@@ -1,0 +1,23 @@
+{
+  "id": "academic-case",
+  "title": "Why write today? The academic case",
+  "blocks": [
+    { "type": "h2", "text": "Why write today? The academic case" },
+    {
+      "type": "p",
+      "text": "LLMs call bedrock assumptions about writing into question. If these machines can produce writing skillfully enough to pass as humans, why not let them handle the work of writing for you? Why spend much time learning to write at all?"
+    },
+    {
+      "type": "p",
+      "text": "The answer lies in the fact that writing is not only a product, but also a process. Performing this process has benefits for the writer that are independent of the writing itself. In short, writing can help you develop a strong, agile mind. Thus, the point of taking a writing class is not simply to get the work done, but instead for you to change. That doesn't happen without going through the writing process."
+    },
+    {
+      "type": "p",
+      "text": "Think of writing like physical exercise. There are, of course, ways to perform physical tasks without exerting yourself: power tools, construction equipment, and so on allow you to get lots of work done without using your own body. However, if you're trying to get in shape, using these tools won't help—you have to actually exercise."
+    },
+    {
+      "type": "p",
+      "text": "Writing works the same way: you don't experience any intellectual growth if LLMs do all the work of writing for you. Thus, in an academic context, it's best to use them in ways that support—but do not supplant—the writing process."
+    }
+  ]
+}

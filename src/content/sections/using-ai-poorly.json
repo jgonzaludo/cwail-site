@@ -1,0 +1,22 @@
+{
+  "title": "Worst practices: Using AI to avoid writing",
+  "content": "Relying on AI to perform intellectual tasks prevents you from becoming proficient in those tasks. Using AI to bypass, replace, or avoid the writing process is counterproductive because it prevents practicing the behaviors needed to be a good writer.\n\nGood AI uses replace another person or tool. Counterproductive uses replace you.\n\nUsing an LLM to produce a draft could violate academic integrity policies. These policies vary by institution but consequences for violations can be severe.\n\nFrequent misuse of AI can stunt development of clear expression, critical thinking about sources, authorial judgment, and focus—skills you need long-term.",
+  "examples": [
+    {
+      "title": "Drafting Assignments",
+      "content": "Don't feed assignment directions into an LLM to produce a draft. This circumvents invention, drafting, and revision, and robs you of the opportunity to develop ideas and understanding.\n\n**Example:**\n\"I am a student in a 200-level design theory course. Generate a polished draft for the attached assignment.\""
+    },
+    {
+      "title": "Adding Unread Sources",
+      "content": "Don't ask AI to add peer-reviewed sources you haven't read. This removes a core part of invention—engagement with evidence—and risks introducing hallucinated or misinterpreted sources.\n\n**Example:**\n\"Add peer-reviewed sources to back up my argument in Part 2.\""
+    },
+    {
+      "title": "Rewriting Papers",
+      "content": "Don't use AI to do extensive revisions that make a paper appear new. Such use often amounts to plagiarism and bypasses learning.\n\n**Example:**\n\"Rewrite this paper as if you were a first-year college student.\""
+    },
+    {
+      "title": "Blind Grammar Fixes",
+      "content": "Don't rely exclusively on AI for style or grammar revisions without reviewing the changes. Failing to review prevents learning how to tailor prose and understand the edits being made.\n\n**Example:**\n\"Make my writing more formal, and remove any grammatical errors.\""
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "title": "AI as a productivity tool",
+  "content": "The earlier recommendations target traditional academic writing. For some non-academic tasks, AI can be a helpful productivity tool when the goal is not to learn or become a better writer.\n\nIf going through the full writing process does not support intellectual growth for a task, outsourcing that task to AI can be reasonable. Use AI where it saves time without undermining learning goals.\n\nYou remain responsible for the quality of both the input (prompts) and the output (reviewing AI results). Authorial judgment still matters: verify accuracy, relevance, and appropriateness of AI-generated outputs.\n\nThink like a writer even when AI does writing: design good prompts and critically review outputs to ensure they meet your goals.",
+  "examples": [
+    {
+      "title": "Repetitive Customization",
+      "content": "AI can rapidly customize many copies of otherwise identical documents. Automating this is appropriate.\n\n**Example:**\n\"Here is a thank-you letter and a list of 100 wedding guests' addresses. Please produce a copy of the thank-you letter for each guest, with the correct name and address.\""
+    },
+    {
+      "title": "Meeting Notes & Summaries",
+      "content": "AI can generate outlines or action-item lists from meeting recordings when capturing an accurate record is the goal rather than learning.\n\n**Example:**\n\"Here is a recording of our monthly staff meeting. Please generate an outline with action items for each attendee.\""
+    },
+    {
+      "title": "Compiling Lists & Tables",
+      "content": "Use AI to compile examples or category-specific lists quickly. AI functions like a tailored search engine for these tasks.\n\n**Example:**\n\"Please generate a list of notable 20th century engineers, each with a one-sentence bio, formatted as a two-column table, ordered alphabetically by last name.\""
+    }
+  ]
+}

@@ -21,7 +21,7 @@ export async function loadModule(): Promise<Module> {
   }
 
   try {
-    const response = await fetch('/src/content/module.json');
+    const response = await fetch('/content/module.json');
     const module = await response.json();
     moduleCache = module;
     storage.set(MODULE_KEY, module);
@@ -100,15 +100,27 @@ export function allRequiredCompleted(): boolean {
 }
 
 export function canAccessConclusion(): boolean {
-  return allRequiredCompleted();
+  // Unlock when all required sections except conclusion are completed
+  const module = getModule();
+  const coreRequiredSections = module.sections.filter(s => s.required && s.id !== 'conclusion');
+  const completed = getCompleted();
+  return coreRequiredSections.every(section => completed.includes(section.id));
 }
 
 export function canAccessPartingMessage(): boolean {
-  return allRequiredCompleted();
+  // Unlock when all required sections except conclusion are completed
+  const module = getModule();
+  const coreRequiredSections = module.sections.filter(s => s.required && s.id !== 'conclusion');
+  const completed = getCompleted();
+  return coreRequiredSections.every(section => completed.includes(section.id));
 }
 
 export function canAccessQuiz(): boolean {
-  return allRequiredCompleted() && isCompleted('conclusion') && isCompleted('parting-message');
+  return allRequiredCompleted();
+}
+
+export function getAllRequiredSections(): string[] {
+  return getRequiredSectionIds();
 }
 
 export function nextSectionId(currentId: string): string | null {

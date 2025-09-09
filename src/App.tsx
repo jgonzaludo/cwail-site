@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -20,13 +20,14 @@ function App() {
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/course" element={<Navigate to="/course/introduction" replace />} />
             <Route path="/course/:sectionId" element={<CoursePage />} />
             <Route path="/lab/tokenization" element={<LabTokenization />} />
             <Route path="/celebration" element={<CelebrationPage />} />
             <Route 
               path="/quiz" 
               element={
-                <RequireQuizUnlocked redirectTo="/course/parting-message">
+                <RequireQuizUnlocked redirectTo="/course/conclusion">
                   <QuizPage />
                 </RequireQuizUnlocked>
               } 

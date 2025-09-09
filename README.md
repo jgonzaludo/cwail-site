@@ -1,99 +1,274 @@
-# CWAIL - Critical Writing and AI Literacy
+````markdown
+# CWAIL — Companion for Writing with AI Literacy
 
-A React-based educational platform for AI ethics and literacy training, developed at Johns Hopkins University.
+## Project Overview
 
-## Quick Start
+* **CWAIL** is a website that teaches students about AI and writing through short modules and interactive labs.
+* Built with **React** (UI library), **TypeScript** (safer JS), **Vite** (fast dev server), and **Tailwind CSS** (styling).
+* The site is JSON-driven: content files control module text and structure.
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
+---
 
-### Installation
+**Guide**  
+Hi Professor Forte! Here's a step-by-step tutorial on how to **locally view CWAIL** before we release a live link. This guide assumes *no* technical knowledge — every step explains what it is and why we need it. If I make updates, I’ll ping you; when I do, just run the command `git pull` in the project folder terminal to fetch the latest changes. Feel free to reach out if you're confused at any point.
+
+---
+
+## Quick — what to install, what to run, and where to open it
+
+**What to install beforehand**
+- Visual Studio Code (recommended)
+- Node.js 18 LTS (or later)
+- Git
+
+**Commands you'll run (copy/paste)**
+```bash
+# clone repository (once)
+git clone https://github.com/jgonzaludo/cwail-site
+cd cwail
+
+# install libraries (once)
+npm install
+
+# run the site locally
+npm run dev
+# open http://localhost:5173
+
+# when I push updates
+git pull
+````
+
+**Where to open**
+
+* Open Terminal in VS Code: ``Ctrl + ` `` (Windows/Linux) or ``Cmd + ` `` (Mac).
+* Open your browser and go to: `http://localhost:5173`.
+
+**Disclaimer**
+
+Don't worry if these things are unfamiliar, I tried my best to lay it all out in the next few sections. But if anything is still unclear, feel free to ping me.
+
+---
+
+## Very Short Glossary
+
+* **IDE**: program used to open and edit code (we recommend **Visual Studio Code**).
+* **Git**: tool that tracks file changes and lets us share updates.
+* **Repository (repo)**: the project's folder stored on GitHub.
+* **Clone**: make a local copy of the repo on your computer.
+* **Node.js**: allows your computer to run the project’s code (outside the browser).
+* **npm**: tool that installs the libraries the project needs.
+* **Terminal / Command Prompt**: where you type commands (e.g., `git clone`).
+
+---
+
+## Setup
+
+Each step explains **what** to do, **why** we do it, and the exact command to copy/paste.
+
+### 1) Install an editor (recommended: Visual Studio Code)
+
+**What it is:** An editor to view files and run commands.
+**Why:** Makes it easy to open, read, and edit the project.
+
+* Download: [https://code.visualstudio.com/](https://code.visualstudio.com/)
+* Install and open it.
+
+Optional extensions you can download in the app (helpful but not required):
+
+* ESLint, Prettier, Tailwind CSS IntelliSense, GitLens.
+
+---
+
+### 2) Install Node.js
+
+**What it is:** Software that runs the project on your computer.
+**Why:** Required to run the local server and install libraries.
+
+* Download the **LTS** version (18.x or later) from [https://nodejs.org/](https://nodejs.org/) and install.
+* Verify installation (open Terminal / Command Prompt):
+
+```bash
+node -v
+npm -v
+```
+
+You should see version numbers like `v18.x` and `9.x`.
+
+---
+
+### 3) Install Git (version control)
+
+**What it is:** Tool to download project files and receive updates.
+**Why:** We use `git` to clone the repository and fetch updates.
+
+* Download & install from [https://git-scm.com/](https://git-scm.com/)
+* Verify:
+
+```bash
+git --version
+```
+
+---
+
+### 4) Get the code (clone the repo)
+
+**What it is:** Copy the project files from GitHub to your computer.
+**Why:** You need the code locally to run and preview it.
+
+If the project is set up on GitHub and you have the URL:
+
+```bash
+git clone https://github.com/jgonzaludo/cwail-site
+cd cwail
+```
+
+**When I push updates:** I’ll ping you. Then, inside the project folder run:
+
+```bash
+git pull
+```
+
+This downloads the newest changes I pushed.
+
+---
+
+### 5) Install project dependencies (one-time)
+
+**What it is:** Downloads libraries the project needs (React, Tailwind, etc.).
+**Why:** The code expects these libraries to run.
+
+From the project root folder:
+
 ```bash
 npm install
 ```
 
-### Development
+This creates a `node_modules` folder (can be large — that’s normal).
+
+---
+
+### 6) Start the development server (view the site locally)
+
+**What it is:** Runs a small web server on your machine that serves the website.
+**Why:** Lets you open the site in your browser and see changes live.
+
+Run:
+
 ```bash
 npm run dev
 ```
-Visit http://localhost:5173
 
-### Build
-```bash
-npm run build
+Open your browser and go to:
+
+```
+http://localhost:5173
 ```
 
-## Project Structure
+You should see the CWAIL homepage.
 
-### Key Routes
-- `/` - Home page with course overview
-- `/course/introduction` - Start the course (main entry point)
-- `/course/:sectionId` - Individual course sections
-- `/lab/tokenization` - Interactive tokenization lab
-- `/celebration` - Completion page (certificate coming soon)
+If you see nothing or an error, copy the error text and ask me — I’ll guide you.
 
-### Content Management
-- **Module Structure**: `src/content/module.json` defines section order and requirements
-- **Section Content**: `src/content/sections/*.json` contains individual section content
-- **Content Blocks**: Each section supports h2, p, accordion, callout, and cta block types
+---
 
-### Key Components
-- `SectionNav` - Course navigation with progress tracking
-- `ProgressBar` - Visual progress indicator
-- `TokenHighlighter` - Interactive token visualization
-- `Accordion` - Collapsible content sections
-- `Callout` - Highlighted information boxes
+## What’s in the project folder (simple guide)
 
-### Development Notes
+* `src/` — source files (components, pages, content).
 
-#### Adding Content
-1. Edit section files in `src/content/sections/`
-2. Use block types: `h2`, `p`, `accordion`, `callout`, `cta`
-3. For navigation: use `{"type":"cta","variant":"next","text":"Next"}`
+  * `components/` — UI parts (Accordion, ProgressBar, etc.).
+  * `content/` — module JSON files (`src/content/sections/`).
+  * `labs/` — interactive demos (tokenization).
+* `package.json` — scripts and dependencies (`npm run dev`, etc.).
+* `tailwind.config.js` — Tailwind setup.
 
-#### Feature Flags
-- `ENABLE_QUIZ` - Quiz functionality (currently disabled)
-- `ENABLE_CERT` - Certificate generation (currently disabled)
-- `ENABLE_EMBEDDING_PROJECTOR` - Advanced visualization (currently disabled)
+---
 
-#### Progress Tracking
-- Uses localStorage for persistence
-- Tracks completion of required sections only
-- Progress percentage based on required sections completed
+## How content is authored (short, plain)
 
-#### Accessibility
-- Keyboard navigation support
-- ARIA attributes on interactive elements
-- Focus management for accordions and tokens
-- Screen reader friendly navigation
+* Modules are JSON files in `src/content/sections/`.
+* A module includes:
 
-## Testing Tasks
+  * `lead` — short summary shown without clicking anything.
+  * `keyTakeaways` — 2–4 bullets shown under the lead.
+  * `sections` — full content shown in accordions.
+* To edit text: open the JSON file in VS Code and save — the local preview updates automatically.
 
-1. **Navigation Flow**: Navigate from introduction → parting-message using Next buttons
-2. **Progress Tracking**: Verify ProgressBar increments only when "Mark Complete" clicked
-3. **Tokenization Lab**: Test both GPT-2 and CL100K encodings with multi-byte strings
-4. **Mobile Responsiveness**: Check responsive design on small screens
-5. **Accessibility**: Test keyboard navigation and screen reader compatibility
+---
 
-## Next Steps
+## Commands cheat-sheet (copy/paste)
 
-When importing PDF content:
-1. Replace placeholder text in `src/content/sections/*.json`
-2. Add real content blocks (accordions, callouts, etc.)
-3. Implement proper gating logic (replace temporary navigation)
-4. Add quiz functionality when `ENABLE_QUIZ` is true
-5. Implement certificate generation when `ENABLE_CERT` is true
+```bash
+# clone repository (once)
+git clone https://github.com/<org-or-user>/cwail.git
+cd cwail
 
-## Tech Stack
+# get updates when I ping you
+git pull
 
-- **Framework**: React 18 + TypeScript
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS
-- **Routing**: React Router DOM
-- **Icons**: Lucide React
-- **Tokenization**: gpt-tokenizer
+# install libraries (once)
+npm install
 
-## Contributing
+# run the site locally
+npm run dev
+# open http://localhost:5173
 
-This project is developed for the Johns Hopkins Center for Leadership Education (CLE) with support from the Center for Teaching Excellence and Innovation (CTEI).
+# build for production (optional)
+npm run build
+npm run preview
+```
+
+---
+
+## Recent release (short summary)
+
+**v0.2.0-alpha — 2025-09-07** — internal preview. UI/UX rework, accordion fixes, gradient hero, quiz gating, and accessibility improvements. Not publicly released.
+
+---
+
+## If I make updates — what you should do
+
+When I say “I pushed an update,” open Terminal in the project folder and run:
+
+```bash
+git pull
+```
+
+If the dev server is running, stop it (`Ctrl+C`) and restart:
+
+```bash
+npm run dev
+```
+
+---
+
+## Changelog
+
+* **v0.2.0-alpha — 2025-09-07 (internal preview)**
+
+  * UI/UX rework: replaced fragile canvas waves with an animated gradient hero.
+  * Reorganized modules after Academic Case (Writing Process, Professional Case, Using AI Wisely, Using AI Poorly, AI as a Productivity Tool, Conclusion).
+  * Standardized accordion JSON shape and reused the working Accordion component.
+  * Quiz gating: added `/quiz` route (blank page) gated by localStorage completion flags.
+  * Accessibility fixes: ARIA attributes, keyboard toggles, focus management.
+  * Added `RevealOnScroll` (framer-motion) for fade-in of cards.
+
+* **v0.1.1-alpha — 2025-07-02**
+
+  * Content import round 1: Academic Case, Professional Case prose, sample quizzes (disabled gating).
+
+* **v0.1.0-alpha — 2025-06-15**
+
+  * Initial prototype: Vite + React + Tailwind baseline, tokenization lab skeleton.
+
+> Status: internal alpha builds. Not publicly released.
+
+---
+
+## Final notes
+
+* If you want a short video walkthrough of these steps, I can record one.
+* If you get stuck at any step, **feel free to reach out** and I’ll help you troubleshoot.
+
+---
+
+```
+```

@@ -25,7 +25,7 @@ export function RequireAllRequired({ children, redirectTo, toast }: GuardProps) 
 
 export function RequireQuizUnlocked({ children, redirectTo, toast }: GuardProps) {
   if (!canAccessQuiz()) {
-    const message = 'Complete Conclusion and A Parting Message to unlock the quiz.';
+    const message = 'Complete all required sections to unlock the quiz.';
     if (toast) {
       toast(message);
     }

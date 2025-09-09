@@ -1,0 +1,30 @@
+{
+  "title": "Best practices: Using AI to support writing",
+  "content": "AI is not inherently harmful to student writers. When used wisely, it can free up time and energy so students can focus on tasks that benefit from their creativity and humanity. However, students who want to grow as writers should use AI in ways that do not prevent the growth they are trying to achieve.\n\nUses of AI that preserve the writing process are best. Do not use AI to skip stages like invention, drafting, and revision, nor to remove your own cognitive contribution from any stage.\n\nTreat AI as a tool you might otherwise consult another person or instrument for: a search engine, a peer reviewer, or an encyclopedia. Use AI to replace tools or support people you would consult—not to replace you.",
+  "examples": [
+    {
+      "title": "Source Gathering",
+      "content": "Use AI to help you gather sources for a writing assignment. If you use AI to find sources, you still must read, evaluate, choose which sources belong in your writing, and cite them appropriately.\n\n**Example:**\n\"Please find 5 articles published in educational journals within the past 10 years that study the effectiveness of SAT prep courses.\""
+    },
+    {
+      "title": "Idea Brainstorming",
+      "content": "Use AI to suggest potential topics or writing ideas. AI-generated topics can help you get started, especially in unfamiliar fields, even if they are not as novel as ideas you would generate yourself.\n\n**Example:**\n\"I am writing a paper that asks me to argue a controversial opinion related to agricultural science. What kinds of topics in this field are currently contentious?\""
+    },
+    {
+      "title": "Peer Review Simulation",
+      "content": "Use AI to simulate peer review-like feedback. AI peer reviews are quick and will usually catch major problems, though humans may offer more nuance.\n\n**Example:**\n\"What do you think of my paper? Suggest a few things I could change to make my tone more formal, given an audience of medical scientists.\""
+    },
+    {
+      "title": "Spell-check & Error Spotting",
+      "content": "Use AI to perform spell-check-like functions. AIs are good at identifying discrete error patterns, though you should review and learn from suggested fixes.\n\n**Example:**\n\"Check my paper for typos and grammatical errors. What kinds of mistakes am I making most frequently?\""
+    },
+    {
+      "title": "Practice Prompts",
+      "content": "Use AI to generate practice prompts. The prompts are tools—the student response is where the writing process does the work.\n\n**Example:**\n\"Prompts that can help me practice reflective writing.\""
+    },
+    {
+      "title": "Non-Writing Elements",
+      "content": "Use AI to generate decorative or non-written elements (images for presentations, illustrative diagrams). These tasks are peripheral to the writing process and fine to automate.\n\n**Example:**\n\"Generate a cartoon image of a salesman counting money. Put a few big sacks of gold coins in the background.\""
+    }
+  ]
+}

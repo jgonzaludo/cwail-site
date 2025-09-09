@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@dqbd/tiktoken": "^1.0.22",
+    "framer-motion": "^12.23.12",
     "gpt-tokenizer": "^3.0.1",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
