@@ -266,8 +266,3 @@ npm run dev
 
 * If you want a short video walkthrough of these steps, I can record one.
 * If you get stuck at any step, **feel free to reach out** and I’ll help you troubleshoot.
-
----
-
-```
-```
