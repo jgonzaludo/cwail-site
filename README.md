@@ -13,9 +13,9 @@ Hi Professor Forte! Here's a step-by-step tutorial on how to **locally view CWAI
 
 ---
 
-## Quick — what to install, what to run, and where to open it
+## Quick Rundown
 
-**What to install beforehand**
+**What you will install beforehand**
 - Visual Studio Code (recommended)
 - Node.js 18 LTS (or later)
 - Git
