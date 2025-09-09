@@ -1,4 +1,3 @@
-````markdown
 # CWAIL — Companion for Writing with AI Literacy
 
 ## Project Overview
